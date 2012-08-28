@@ -4,7 +4,7 @@
 
     using NUnit.Framework;
 
-    using WinHill.Audio.Streams;
+    using Audio.Streams;
 
     [TestFixture]
     public class NullStreamTest
