@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinHill.Audio", "WinHill.Audio\WinHill.Audio.csproj", "{0FD77D60-2A07-402C-9A7A-5ABA20663BF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinHill.Audio.Test", "WinHill.Audio.Test\WinHill.Audio.Test.csproj", "{B7377D4C-88D4-4092-8624-992F6BA2DB9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{0FD77D60-2A07-402C-9A7A-5ABA20663BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FD77D60-2A07-402C-9A7A-5ABA20663BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FD77D60-2A07-402C-9A7A-5ABA20663BF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7377D4C-88D4-4092-8624-992F6BA2DB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7377D4C-88D4-4092-8624-992F6BA2DB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7377D4C-88D4-4092-8624-992F6BA2DB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7377D4C-88D4-4092-8624-992F6BA2DB9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
