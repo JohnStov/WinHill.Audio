@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Streams\IConnectableAudioStream.cs" />
     <Compile Include="Streams\NullStream.cs" />
+    <None Include="WinHill.Audio.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
