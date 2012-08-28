@@ -75,15 +75,6 @@
             Assert.That(connector.Take(5), Is.EqualTo(new[] { 3.45, 3.45, 3.45, 3.45, 3.45 }));
         }
 
-//        [Test]
-//        public void CanGetParentBlock()
-//        {
-//            var mockBlock = Substitute.For<IAudioBlock>();
-//            var stream = new AudioConnector { Block = mockBlock.Object };
-//
-//            Assert.That(stream.Block, Is.SameAs(mockBlock.Object));
-//        }
-//
         [Test]
         public void CanConnectUnconnectedStream()
         {

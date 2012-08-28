@@ -2,9 +2,7 @@
 {
     using System.Diagnostics.Contracts;
 
-    using NAudio.Wave;
-
-    using WinHill.Audio.Configuration;
+    using Configuration;
 
     [ContractClassFor(typeof(IDevice))]
     public abstract class DeviceContract : IDevice

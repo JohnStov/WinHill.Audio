@@ -5,32 +5,19 @@
     using System.ComponentModel;
     using System.Diagnostics.Contracts;
 
-    using ReactiveUI;
-
     using Configuration;
 
     [ContractClassFor(typeof(IAudioSettings))]
     public abstract class AudioSettingsContract : IAudioSettings
     {
+        // This event isn't used - needed for compilation
+#pragma warning disable 67
+        public event PropertyChangedEventHandler PropertyChanged;
+#pragma warning restore 67
+
         public IDisposable SuppressChangeNotifications()
         {
             return default(IDisposable);
-        }
-
-        public IObservable<IObservedChange<object, object>> Changing
-        {
-            get
-            {
-                return default(IObservable<IObservedChange<object, object>>);
-            }
-        }
-
-        public IObservable<IObservedChange<object, object>> Changed
-        {
-            get
-            {
-                return default(IObservable<IObservedChange<object, object>>);
-            }
         }
 
         public IEnumerable<ITechnology> Technologies
@@ -65,11 +52,5 @@
                 return default(int);
             }
         }
-
-// These events aren't used - needed for compilation
-#pragma warning disable 67
-        public event PropertyChangedEventHandler PropertyChanged;
-        public event PropertyChangingEventHandler PropertyChanging;
-#pragma warning restore 67
     }
 }

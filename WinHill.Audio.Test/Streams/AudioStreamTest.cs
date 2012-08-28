@@ -47,15 +47,6 @@ namespace WinHill.Audio.Test.Streams
             }
         }
 
-//        [Test]
-//        public void CanGetParentBlock()
-//        {
-//            var mockBlock = new Mock<IAudioBlock>();
-//            var stream = new AudioStream(() => 0.0) { Block = mockBlock.Object };
-//            
-//            Assert.That(stream.Block, Is.SameAs(mockBlock.Object));
-//        }
-
         [Test]
         public void ConnectorDefaultsToNull()
         {
