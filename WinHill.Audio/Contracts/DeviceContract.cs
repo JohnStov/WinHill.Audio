@@ -16,9 +16,9 @@
             }
         }
 
-        public IWavePlayer Player
+        public IPlayback Player
         {
-            get { return default (IWavePlayer); }
+            get { return default (IPlayback); }
         }
 
         public double SampleRate

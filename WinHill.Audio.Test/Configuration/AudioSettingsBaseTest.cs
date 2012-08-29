@@ -7,9 +7,9 @@
     using Should.Fluent;
 
     [TestFixture]
-    public class AudioSettingsTest
+    public class AudioSettingsBaseTest
     {
-        private class TestAudioSettings : AudioSettings
+        private class TestAudioSettings : AudioSettingsBase
         {
             protected override IEnumerable<ITechnology> GetTechnologies()
             {

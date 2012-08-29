@@ -12,6 +12,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{367B58
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinHill.Audio.NAudio", "..\WinHill.Audio.NAudio\WinHill.Audio.NAudio\WinHill.Audio.NAudio.csproj", "{1FFB46EC-AAE8-4BB5-B14A-75AF64B357A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinHill.Audio.NAudio.Test", "..\WinHill.Audio.NAudio\WinHill.Audio.NAudio.Test\WinHill.Audio.NAudio.Test.csproj", "{CC305893-96F3-4785-A47F-9C2040D78461}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1FFB46EC-AAE8-4BB5-B14A-75AF64B357A0} = {1FFB46EC-AAE8-4BB5-B14A-75AF64B357A0}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +33,14 @@ Global
 		{B7377D4C-88D4-4092-8624-992F6BA2DB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7377D4C-88D4-4092-8624-992F6BA2DB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7377D4C-88D4-4092-8624-992F6BA2DB9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FFB46EC-AAE8-4BB5-B14A-75AF64B357A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FFB46EC-AAE8-4BB5-B14A-75AF64B357A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FFB46EC-AAE8-4BB5-B14A-75AF64B357A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FFB46EC-AAE8-4BB5-B14A-75AF64B357A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC305893-96F3-4785-A47F-9C2040D78461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC305893-96F3-4785-A47F-9C2040D78461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC305893-96F3-4785-A47F-9C2040D78461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC305893-96F3-4785-A47F-9C2040D78461}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

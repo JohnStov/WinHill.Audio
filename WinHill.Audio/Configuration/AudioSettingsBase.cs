@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel;
 
-    public abstract class AudioSettings : IAudioSettings
+    public abstract class AudioSettingsBase : IAudioSettings
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -49,7 +49,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\AudioSettingsTest.cs" />
+    <Compile Include="Configuration\AudioSettingsBaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Streams\AudioConnectorTest.cs" />
     <Compile Include="Streams\AudioStreamTest.cs" />
