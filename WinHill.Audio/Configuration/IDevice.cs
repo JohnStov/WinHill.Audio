@@ -8,7 +8,7 @@
     {
         string Name { get; }
 
-        IPlayback Player { get; }
+        IWavePlayer Player { get; }
 
         double SampleRate { get; }
 

@@ -35,12 +35,12 @@
   <ItemGroup>
     <None Include="Contracts\AudioBlockContract.cs" />
     <None Include="Contracts\AudioBlockProviderContract.cs" />
-    <Compile Include="Configuration\AudioSettingsBase.cs" />
+    <Compile Include="Configuration\AudioSettings.cs" />
     <Compile Include="Configuration\DeviceBase.cs" />
     <Compile Include="Configuration\IAudioSettings.cs" />
     <Compile Include="Configuration\IDevice.cs" />
     <Compile Include="Configuration\ITechnology.cs" />
-    <Compile Include="Configuration\IPlayback.cs" />
+    <Compile Include="Configuration\IWavePlayer.cs" />
     <Compile Include="Configuration\TechnologyBase.cs" />
     <Compile Include="Contracts\AudioConnectorContract.cs" />
     <Compile Include="Contracts\AudioSettingsContract.cs" />

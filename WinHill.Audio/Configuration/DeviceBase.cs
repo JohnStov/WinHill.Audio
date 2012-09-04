@@ -6,7 +6,7 @@
     {
         public abstract string Name { get; }
 
-        public IPlayback Player { get; protected set; }
+        public IWavePlayer Player { get; protected set; }
 
         public virtual double SampleRate { get; set; }
 
