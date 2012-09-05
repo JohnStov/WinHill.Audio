@@ -41,6 +41,7 @@
     <Compile Include="Configuration\IDevice.cs" />
     <Compile Include="Configuration\ITechnology.cs" />
     <Compile Include="Configuration\IWavePlayer.cs" />
+    <Compile Include="Configuration\PlaybackState.cs" />
     <Compile Include="Configuration\TechnologyBase.cs" />
     <Compile Include="Contracts\AudioConnectorContract.cs" />
     <Compile Include="Contracts\AudioSettingsContract.cs" />
