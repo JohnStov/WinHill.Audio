@@ -2,19 +2,15 @@
 {
     using System;
     using System.Diagnostics.Contracts;
-    using System.Xml.Linq;
 
     using Blocks;
-    using Containers;
-
-    using ReactiveUI;
 
     using Streams;
 
     [ContractClassFor(typeof(IAudioBlock))]
     public abstract class AudioBlockContract : IAudioBlock
     {
-        public ReactiveCollection<IAudioConnector> Inputs
+/*        public ObservableCollection<IAudioConnector> Inputs
         {
             get { return default(ReactiveCollection<IAudioConnector>); }
         }
@@ -29,7 +25,7 @@
         {
             Contract.Invariant(Inputs.Count + Outputs.Count > 0);   
         }
-
+        */
         public string Name
         {
             get { return default(string); }
@@ -37,25 +33,5 @@
         }
 
         public Type BlockType { get { return default(Type); } }
-
-        public void NotifyBlockLoading(XElement element)
-        {
-            Contract.Requires(element != null);
-        }
-
-        public void NotifyBlockSaving(XElement element)
-        {
-            Contract.Requires(element != null);
-        }
-
-        public IObservable<XElement> BlockLoading
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public IObservable<XElement> BlockSaving
-        {
-            get { throw new NotImplementedException(); }
-        }
     }
 }
