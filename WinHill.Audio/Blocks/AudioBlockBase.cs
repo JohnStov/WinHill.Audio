@@ -1,5 +1,6 @@
 ﻿namespace WinHill.Audio.Blocks
 {
+    using System;
     using System.Collections.Generic;
 
     public abstract class AudioBlockBase : IAudioBlock
@@ -9,7 +10,7 @@
 
         public string Name { get; set; }
 
-        public System.Type BlockType { get { return this.GetType(); } }
+        public Type BlockType { get { return GetType(); } }
 
         public IEnumerable<IInput> Inputs { get { return inputs; } }
 
