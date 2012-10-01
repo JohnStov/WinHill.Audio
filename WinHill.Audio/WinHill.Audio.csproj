@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Blocks\AudioBlockBase.cs" />
+    <Compile Include="Blocks\IInput.cs" />
+    <Compile Include="Blocks\IOutput.cs" />
     <Compile Include="Contracts\AudioBlockContract.cs" />
     <None Include="Contracts\AudioBlockProviderContract.cs" />
     <Compile Include="Blocks\IAudioBlock.cs" />

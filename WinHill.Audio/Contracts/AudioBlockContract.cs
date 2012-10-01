@@ -1,31 +1,31 @@
 ﻿namespace WinHill.Audio.Contracts
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
+    using System.Linq;
 
     using Blocks;
-
-    using Streams;
 
     [ContractClassFor(typeof(IAudioBlock))]
     public abstract class AudioBlockContract : IAudioBlock
     {
-/*        public ObservableCollection<IAudioConnector> Inputs
+        public IEnumerable<IInput> Inputs
         {
-            get { return default(ReactiveCollection<IAudioConnector>); }
+            get { return default(IEnumerable<IInput>); }
         }
 
-        public ReactiveCollection<IConnectableAudioStream> Outputs
+        public IEnumerable<IOutput> Outputs
         {
-            get { return default(ReactiveCollection<IConnectableAudioStream>); }
+            get { return default(IEnumerable<IOutput>); }
         }
 
         [ContractInvariantMethod]
         private void ContractInvariant()
         {
-            Contract.Invariant(Inputs.Count + Outputs.Count > 0);   
+            Contract.Invariant(Inputs.Count() + Outputs.Count() > 0);   
         }
-        */
+
         public string Name
         {
             get { return default(string); }
