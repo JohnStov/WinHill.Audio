@@ -6,7 +6,7 @@
 
     public class AudioConnector : IAudioConnector, IAudioStream
     {
-        private static readonly NullStream NullStream = new NullStream();
+        private static readonly IConnectableAudioStream NullStream = new AudioStream(() => 0.0);
 
         private IConnectableAudioStream stream = NullStream;
 

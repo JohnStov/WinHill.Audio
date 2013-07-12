@@ -1,33 +1,31 @@
-﻿using NSubstitute;
-
+﻿
 namespace WinHill.Audio.Test.Streams
 {
     using System.Linq;
-
-    using NUnit.Framework;
-
+    using NSubstitute;
+    using Should.Fluent;
     using WinHill.Audio.Streams;
+    using Xunit;
 
-    [TestFixture]
-    public class AudioStreamTest
+    public class AudioStreamTests
     {
-        [Test]
+        [Fact]
         public void CanCreateAsNullStream()
         {
             var stream = new AudioStream(() => 0.0);
 
-            Assert.That(stream.Take(10), Is.EqualTo(new[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }));
+            stream.Take(10).Should().Equal(new[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 });
         }
 
-        [Test]
+        [Fact]
         public void CanCreateAsConstStream()
         {
             var stream = new AudioStream(() => 1.23);
 
-            Assert.That(stream.Take(10), Is.EqualTo(new[] { 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23 }));
+            stream.Take(10).Should().Equal(new[] { 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23 });
         }
 
-        [Test]
+        [Fact]
         public void ResetStreamHasNoEffect()
         {
             int index = 0;
@@ -36,31 +34,31 @@ namespace WinHill.Audio.Test.Streams
             var enumerator = stream.GetEnumerator();
             for (var i = 0; i < 5; ++i)
             {
-                Assert.That(enumerator.Current, Is.EqualTo((double)i));
+                enumerator.Current.Should().Equal(i);
                 enumerator.MoveNext();
             }
             enumerator.Reset();
             for (int i = 5; i < 10; ++i)
             {
-                Assert.That(enumerator.Current, Is.EqualTo((double)i));
+                enumerator.Current.Should().Equal(i);
                 enumerator.MoveNext();
             }
         }
 
-        [Test]
+        [Fact]
         public void ConnectorDefaultsToNull()
         {
             var stream = new AudioStream(() => 0.0);
-            Assert.That(stream.Connector, Is.Null); 
+            stream.Connector.Should().Be.Null(); 
         }
 
-        [Test]
+        [Fact]
         public void CanSetConnector()
         {
             var mockConnector = Substitute.For<IAudioConnector>();
             var stream = new AudioStream(() => 0.0) { Connector = mockConnector };
-            Assert.That(stream.Connector, Is.Not.Null);
-            Assert.That(stream.Connector, Is.SameAs(mockConnector));
+            stream.Connector.Should().Not.Be.Null();
+            stream.Connector.Should().Be.SameAs(mockConnector);
         }
     }
 }

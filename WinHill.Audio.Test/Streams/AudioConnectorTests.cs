@@ -1,81 +1,82 @@
 ﻿namespace WinHill.Audio.Test.Streams
 {
     using System.Linq;
-    using NUnit.Framework;
+
+    using Should.Fluent;
+
+    using Xunit;
     using Audio.Streams;
     using NSubstitute;
 
-    [TestFixture]
-    class AudioConnectorTest
+    public class AudioConnectorTests
     {
-        [Test]
+        [Fact]
         public void UnconnectedConnectorYieldsZero()
         {
             var connector = new AudioConnector();
 
-            Assert.That(connector.Take(10), Is.EqualTo(new [] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}));
+            connector.Take(10).Should().Equal(new [] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0});
         }
 
-        [Test]
+        [Fact]
         public void ConnectedConnectorYieldsStreamValue()
         {
             var connector = new AudioConnector();
-            connector.Connect(new ConstStream { Value = 1.23 });
+            connector.Connect(new AudioStream(() => 1.23));
 
-            Assert.That(connector.Take(10), Is.EqualTo(new[] { 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23 }));
+            connector.Take(10).Should().Equal(new[] { 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23 });
         }
 
-        [Test]
+        [Fact]
         public void ConnectedThenDisconnectedConnectorYieldsZero()
         {
             var connector = new AudioConnector();
-            connector.Connect(new ConstStream { Value = 1.23 });
+            connector.Connect(new AudioStream(() => 1.23));
             connector.Disconnect();
 
-            Assert.That(connector.Take(10), Is.EqualTo(new[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }));
+            connector.Take(10).Should().Equal(new[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 });
         }
 
-        [Test]
+        [Fact]
         public void YieldsStreamValueAfterConnecting()
         {
             var connector = new AudioConnector();
 
-            Assert.That(connector.Take(5), Is.EqualTo(new[] { 0.0, 0.0, 0.0, 0.0, 0.0 }));
+            connector.Take(5).Should().Equal(new[] { 0.0, 0.0, 0.0, 0.0, 0.0 });
 
-            connector.Connect(new ConstStream { Value = 2.34 });
+            connector.Connect(new AudioStream(() => 2.34));
 
-            Assert.That(connector.Take(5), Is.EqualTo(new[] { 2.34, 2.34, 2.34, 2.34, 2.34 }));
+            connector.Take(5).Should().Equal(new[] { 2.34, 2.34, 2.34, 2.34, 2.34 });
         }
 
-        [Test]
+        [Fact]
         public void YieldsZeroAfterDisconnecting()
         {
             var connector = new AudioConnector();
-            connector.Connect(new ConstStream { Value = 2.34 });
+            connector.Connect(new AudioStream(() => 2.34));
 
-
-            Assert.That(connector.Take(5), Is.EqualTo(new[] { 2.34, 2.34, 2.34, 2.34, 2.34 }));
+            connector.Take(5).Should().Equal(new[] { 2.34, 2.34, 2.34, 2.34, 2.34 });
 
             connector.Disconnect();
 
-            Assert.That(connector.Take(5), Is.EqualTo(new[] { 0.0, 0.0, 0.0, 0.0, 0.0 }));
+            connector.Take(5).Should().Equal(new[] { 0.0, 0.0, 0.0, 0.0, 0.0 });
         }
 
-        [Test]
+        [Fact]
         public void ConnectingNewStreamYieldsNewStreamValue()
         {
             var connector = new AudioConnector();
-            connector.Connect(new ConstStream { Value = 2.34 });
+            connector.Connect(new AudioStream(() => 2.34));
 
 
-            Assert.That(connector.Take(5), Is.EqualTo(new[] { 2.34, 2.34, 2.34, 2.34, 2.34 }));
+            connector.Take(5).Should().Equal(new[] { 2.34, 2.34, 2.34, 2.34, 2.34 });
 
-            connector.Connect(new ConstStream { Value = 3.45 });
+            connector.Connect(new AudioStream(() => 3.45));
 
-            Assert.That(connector.Take(5), Is.EqualTo(new[] { 3.45, 3.45, 3.45, 3.45, 3.45 }));
+            connector.Take(5).Should().Equal(new[] { 3.45, 3.45, 3.45, 3.45, 3.45 });
         }
 
-        [Test]
+        [Fact]
         public void CanConnectUnconnectedStream()
         {
             var mockStream = Substitute.For<IConnectableAudioStream>();
@@ -84,12 +85,13 @@
             var connector = new AudioConnector();
             var connected = connector.Connect(mockStream);
 
-            Assert.That(connected, Is.True);
-            Assert.That(connector.Connection, Is.SameAs(mockStream));
-            Assert.That(mockStream.Connector, Is.SameAs(connector));
+            connected.Should().Be.True();
+            // Should().Be.SameAs doesn't work
+            Assert.Same(mockStream, connector.Connection);
+            mockStream.Connector.Should().Be.SameAs(connector);
         }
 
-        [Test]
+        [Fact]
         public void CannotConnectConnectedStream()
         {
             var mockStream = Substitute.For<IConnectableAudioStream>();
@@ -99,12 +101,12 @@
             var connector = new AudioConnector();
             var connected = connector.Connect(mockStream);
 
-            Assert.That(connected, Is.False);
-            Assert.That(connector.Connection, Is.Null);
-            Assert.That(mockStream.Connector, Is.SameAs(mockConnector));
+            connected.Should().Be.False();
+            connector.Connection.Should().Be.Null();
+            mockStream.Connector.Should().Be.SameAs(mockConnector);
         }
 
-        [Test]
+        [Fact]
         public void CanReconnectConnectedStream()
         {
             var mockStream = Substitute.For<IConnectableAudioStream>();
@@ -115,12 +117,13 @@
             
             var connected = connector.Connect(mockStream);
 
-            Assert.That(connected, Is.True);
-            Assert.That(connector.Connection, Is.SameAs(mockStream));
-            Assert.That(mockStream.Connector, Is.SameAs(connector));
+            connected.Should().Be.True();
+            // Should().Be.SameAs doesn't work
+            Assert.Same(mockStream, connector.Connection);
+            mockStream.Connector.Should().Be.SameAs(connector);
         }
 
-        [Test]
+        [Fact]
         public void DisconnectingStreamClearsConnector()
         {
             var mockStream = Substitute.For<IConnectableAudioStream>();
@@ -128,12 +131,12 @@
             var connector = new AudioConnector();
 
             var connected = connector.Connect(mockStream);
-            Assert.That(connected, Is.True);
+            connected.Should().Be.True();
 
             connector.Disconnect();
             
-            Assert.That(connector.Connection, Is.Null);
-            Assert.That(mockStream.Connector, Is.Null);
+            connector.Connection.Should().Be.Null();
+            mockStream.Connector.Should().Be.Null();
         }
 
     }
