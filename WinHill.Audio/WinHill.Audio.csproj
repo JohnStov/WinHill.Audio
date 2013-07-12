@@ -14,6 +14,8 @@
     <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,11 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Blocks\AudioBlockBase.cs" />
     <Compile Include="Blocks\IInput.cs" />
     <Compile Include="Blocks\IOutput.cs" />
     <Compile Include="Contracts\AudioBlockContract.cs" />
-    <None Include="Contracts\AudioBlockProviderContract.cs" />
     <Compile Include="Blocks\IAudioBlock.cs" />
     <Compile Include="Contracts\AudioConnectorContract.cs" />
     <Compile Include="Contracts\ConnectableAudioStreamContract.cs" />
@@ -48,12 +48,17 @@
     <Compile Include="Streams\IAudioStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Streams\IConnectableAudioStream.cs" />
+    <None Include="packages.config" />
     <None Include="WinHill.Audio.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>..\packages\Microsoft.Bcl.Immutable.1.0.12-beta\lib\portable-net45+win8+wp8\System.Collections.Immutable.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

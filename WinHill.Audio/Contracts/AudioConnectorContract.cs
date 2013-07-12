@@ -6,12 +6,6 @@
     [ContractClassFor(typeof(IAudioConnector))]
     public abstract class AudioConnectorContract : IAudioConnector
     {
-        public string Name
-        {
-            get { return default(string); }
-            set { }
-        }
-
         public bool Connect(IConnectableAudioStream stream)
         {
             Contract.Requires(stream != null);

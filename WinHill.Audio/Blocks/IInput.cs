@@ -2,10 +2,6 @@
 {
     public interface IInput
     {
-        IAudioBlock Block { get; }
-        
-        string Name { get; }
-
         // connect an output to this input
         bool Connect(IOutput output);
 

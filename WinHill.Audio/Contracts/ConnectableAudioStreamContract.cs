@@ -23,11 +23,5 @@
         {
             return GetEnumerator();
         }
-
-        public string Name
-        {
-            get { return default(string); }
-            set {  }
-        }
     }
 }
