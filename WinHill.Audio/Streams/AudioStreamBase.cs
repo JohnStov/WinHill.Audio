@@ -9,9 +9,9 @@
         {
         }
 
-        protected abstract double GetNext();
+        protected abstract float GetNext();
 
-        private class Enumerator : IEnumerator<double>
+        private class Enumerator : IEnumerator<float>
         {
             private readonly AudioStreamBase parent;
 
@@ -23,12 +23,12 @@
 
             public void Reset() { }
 
-            public double Current { get { return parent.GetNext(); } }
+            public float Current { get { return parent.GetNext(); } }
 
             object IEnumerator.Current { get { return Current; } }
         }
 
-        public IEnumerator<double> GetEnumerator()
+        public IEnumerator<float> GetEnumerator()
         {
             return new Enumerator(this);
         }

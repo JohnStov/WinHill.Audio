@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface IAudioStream : IEnumerable<double>
+    public interface IAudioStream : IEnumerable<float>
     {
     }
 }

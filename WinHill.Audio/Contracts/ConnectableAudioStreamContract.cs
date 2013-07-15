@@ -14,9 +14,9 @@
             set {}
         }
 
-        public IEnumerator<double> GetEnumerator()
+        public IEnumerator<float> GetEnumerator()
         {
-            return default(IEnumerator<double>);
+            return default(IEnumerator<float>);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

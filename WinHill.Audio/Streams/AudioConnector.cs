@@ -6,7 +6,7 @@
 
     public class AudioConnector : IAudioConnector, IAudioStream
     {
-        private static readonly IConnectableAudioStream NullStream = new AudioStream(() => 0.0);
+        private static readonly IConnectableAudioStream NullStream = new AudioStream(() => 0.0f);
 
         private IConnectableAudioStream stream = NullStream;
 
@@ -33,7 +33,7 @@
             stream = NullStream;
         }
 
-        public IEnumerator<double> GetEnumerator()
+        public IEnumerator<float> GetEnumerator()
         {
             return stream.GetEnumerator();
         }

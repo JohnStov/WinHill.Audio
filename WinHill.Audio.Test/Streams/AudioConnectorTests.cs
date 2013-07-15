@@ -15,26 +15,26 @@
         {
             var connector = new AudioConnector();
 
-            connector.Take(10).Should().Equal(new [] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0});
+            connector.Take(10).Should().Equal(Enumerable.Repeat(0.0f, 10));
         }
 
         [Fact]
         public void ConnectedConnectorYieldsStreamValue()
         {
             var connector = new AudioConnector();
-            connector.Connect(new AudioStream(() => 1.23));
+            connector.Connect(new AudioStream(() => 1.23f));
 
-            connector.Take(10).Should().Equal(new[] { 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23, 1.23 });
+            connector.Take(10).Should().Equal(Enumerable.Repeat(1.23f, 10));
         }
 
         [Fact]
         public void ConnectedThenDisconnectedConnectorYieldsZero()
         {
             var connector = new AudioConnector();
-            connector.Connect(new AudioStream(() => 1.23));
+            connector.Connect(new AudioStream(() => 1.23f));
             connector.Disconnect();
 
-            connector.Take(10).Should().Equal(new[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 });
+            connector.Take(10).Should().Equal(Enumerable.Repeat(0.0f, 10));
         }
 
         [Fact]
@@ -42,38 +42,38 @@
         {
             var connector = new AudioConnector();
 
-            connector.Take(5).Should().Equal(new[] { 0.0, 0.0, 0.0, 0.0, 0.0 });
+            connector.Take(5).Should().Equal(Enumerable.Repeat(0.0f, 5));
 
-            connector.Connect(new AudioStream(() => 2.34));
+            connector.Connect(new AudioStream(() => 2.34f));
 
-            connector.Take(5).Should().Equal(new[] { 2.34, 2.34, 2.34, 2.34, 2.34 });
+            connector.Take(5).Should().Equal(Enumerable.Repeat(2.34f, 5));
         }
 
         [Fact]
         public void YieldsZeroAfterDisconnecting()
         {
             var connector = new AudioConnector();
-            connector.Connect(new AudioStream(() => 2.34));
+            connector.Connect(new AudioStream(() => 2.34f));
 
-            connector.Take(5).Should().Equal(new[] { 2.34, 2.34, 2.34, 2.34, 2.34 });
+            connector.Take(5).Should().Equal(Enumerable.Repeat(2.34f, 5));
 
             connector.Disconnect();
 
-            connector.Take(5).Should().Equal(new[] { 0.0, 0.0, 0.0, 0.0, 0.0 });
+            connector.Take(5).Should().Equal(Enumerable.Repeat(0.0f, 5));
         }
 
         [Fact]
         public void ConnectingNewStreamYieldsNewStreamValue()
         {
             var connector = new AudioConnector();
-            connector.Connect(new AudioStream(() => 2.34));
+            connector.Connect(new AudioStream(() => 2.34f));
 
 
-            connector.Take(5).Should().Equal(new[] { 2.34, 2.34, 2.34, 2.34, 2.34 });
+            connector.Take(5).Should().Equal(Enumerable.Repeat(2.34f, 5));
 
-            connector.Connect(new AudioStream(() => 3.45));
+            connector.Connect(new AudioStream(() => 3.45f));
 
-            connector.Take(5).Should().Equal(new[] { 3.45, 3.45, 3.45, 3.45, 3.45 });
+            connector.Take(5).Should().Equal(Enumerable.Repeat(3.45f, 5));
         }
 
         [Fact]

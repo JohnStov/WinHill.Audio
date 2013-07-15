@@ -4,11 +4,11 @@
 
     public class AudioStream : AudioStreamBase
     {
-        private readonly Func<double> fn;
+        private readonly Func<float> fn;
 
-        protected override double GetNext() { return fn(); }
+        protected override float GetNext() { return fn(); }
 
-        public AudioStream(Func<double> fn)
+        public AudioStream(Func<float> fn)
         {
             this.fn = fn;
         }
