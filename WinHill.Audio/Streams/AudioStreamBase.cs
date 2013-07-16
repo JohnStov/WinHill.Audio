@@ -3,12 +3,8 @@
     using System.Collections;
     using System.Collections.Generic;
 
-    public abstract class AudioStreamBase : IConnectableAudioStream
+    public abstract class AudioStreamBase : IAudioStream
     {
-        protected AudioStreamBase()
-        {
-        }
-
         protected abstract float GetNext();
 
         private class Enumerator : IEnumerator<float>
@@ -37,7 +33,5 @@
         {
             return GetEnumerator();
         }
-
-        public IAudioConnector Connector { get; set; }
     }
 }

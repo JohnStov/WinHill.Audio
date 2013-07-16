@@ -2,7 +2,6 @@
 namespace WinHill.Audio.Test.Streams
 {
     using System.Linq;
-    using NSubstitute;
     using Should.Fluent;
     using WinHill.Audio.Streams;
     using Xunit;
@@ -31,34 +30,11 @@ namespace WinHill.Audio.Test.Streams
             int index = 0;
             var stream = new AudioStream(() => (float)index++);
 
-            var enumerator = stream.GetEnumerator();
-            for (var i = 0; i < 5; ++i)
-            {
-                enumerator.Current.Should().Equal((float)i);
-                enumerator.MoveNext();
-            }
-            enumerator.Reset();
-            for (int i = 5; i < 10; ++i)
-            {
-                enumerator.Current.Should().Equal((float)i);
-                enumerator.MoveNext();
-            }
-        }
+            stream.Take(5).Should().Equal(Enumerable.Range(0, 5).Select(x => (float)x));
 
-        [Fact]
-        public void ConnectorDefaultsToNull()
-        {
-            var stream = new AudioStream(() => 0.0f);
-            stream.Connector.Should().Be.Null(); 
-        }
+            stream.GetEnumerator().Reset();
 
-        [Fact]
-        public void CanSetConnector()
-        {
-            var mockConnector = Substitute.For<IAudioConnector>();
-            var stream = new AudioStream(() => 0.0f) { Connector = mockConnector };
-            stream.Connector.Should().Not.Be.Null();
-            stream.Connector.Should().Be.SameAs(mockConnector);
+            stream.Take(5).Should().Equal(Enumerable.Range(5, 5).Select(x => (float)x));
         }
     }
 }
